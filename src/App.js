@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Header from './Header';
-import mockData from './mockData';
+import CardContainer from './CardContainer';
+import Card from './Card';
+import mockData from './mockData.js';
 import './css/App.css';
 
 class App extends Component {
@@ -9,31 +10,26 @@ class App extends Component {
     super();
 
     this.state = {
-
+      questions: mockData.mockData,
+      gameRestart: false,
+      questionIndex: 0,
+      savedQuestions:[]
     }
   }
-  
-  
-  
-  
-  
+
+  incrementQuestionIndex = () => {
+    const newIndex = this.state.questionIndex + 1;
+    this.setState({
+      questionIndex: newIndex
+    })
+  }
   
   render() {
     return (
       <div className="App">
-        <Header/>>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <Header/>
+        <CardContainer/>
+        <Card/>
       </div>
     );
   }
