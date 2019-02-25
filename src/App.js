@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import CardContainer from "./CardContainer";
+import WronglistCont from "./WrongListCont";
 import Card from "./Card";
-import mockData from "./mockData.js";
+import mockData from "./mockData";
+import Wronglist from "./WrongList";
 import "./css/App.css";
 
 class App extends Component {
@@ -11,25 +13,14 @@ class App extends Component {
     this.state = {
       questions: mockData.mockData,
       gameRestart: false,
-      repeatQuestions: true,
+      repeatQuestions: false,
       questionIndex: 0,
       savedArray: [],
       wrongArray: []
     };
   }
-
-  componentWillMount() {
-    const localStorageArray = JSON.parse(
-      localStorage.getItem("savedQuestions")
-    );
-    console.log(localStorageArray);
-    this.setState({
-      wrongArray: localStorageArray
-    });
-    console.log(this.state.wrongArray);
-  }
-
-  shouldRepeatQuestions = () => {
+  
+  restartGame = () => {
     if (this.state.repeatQuestions === false) {
       this.setState({
         repeatQuestions: true
@@ -65,38 +56,56 @@ class App extends Component {
     });
   };
 
-  renderWrongArray = () => {
-    console.log(this.state.wrongArray);
-    return this.state.wrongArray.map((element, index) => {
-      return (
-        <ul>
-          <li key={index}>{element.id}</li>
-          <li key={index}>{element.question}</li>
-          <li key={index}>{element.correctAnswer}</li>
-        </ul>
-      );
-    });
+  pullFromStorage = () => {
+    if(localStorage.hasOwnProperty("savedQuestions")){
+      return JSON.parse(localStorage.getItem("savedQuestions"));
+    }else{
+      return [];
+    }
+  };
+
+  clearLocalStorage = () => {
+    localStorage.clear();
   };
 
   render() {
+    let wrongArray = this.pullFromStorage();
+    console.log(wrongArray)
     if (this.state.repeatQuestions === false) {
       return (
         <div className="App">
           <Header />
-          <CardContainer />
-          <Card
-            questions={this.state.questions[this.state.questionIndex]}
+          <div>{this.state.questionIndex + 1}/55</div>
+          <CardContainer
+            questions={this.state.questions}
             questionIndex={this.state.questionIndex}
             incrementQuestionIndex={this.incrementQuestionIndex}
             saveToStorage={this.saveToStorage}
             shouldRepeatQuestions={this.shouldRepeatQuestions}
+            restartGame={this.restartGame}
+            clearLocalStorage={this.clearLocalStorage}
           />
         </div>
       );
-    } else {
+    } else if (this.pullFromStorage() !== null){
       return (
-        <div className="App">
-          <div>{this.renderWrongArray()}</div>
+        <div className="wrong-questions">
+          <h1 className="review-header">Ok, here is some trouble spots</h1>
+          <button className="restart-game-btn" onClick={this.restartGame}>
+            Switch View
+          </button>
+          <button className="clear-btn" onClick={this.clearLocalStorage}>
+            Clear Local
+          </button>
+          {wrongArray.map((element, index) => {
+            return (
+              <WronglistCont
+                key={index}
+                element={element}
+                wrongArray={this.wrongArray}
+              />
+            );
+          })}
         </div>
       );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CardContainer from './CardContainer';
 import "./css/Card.css";
 
 class Card extends Component {
@@ -24,16 +25,20 @@ class Card extends Component {
   render() {
     return (
       <div className="Card">
-        <h2 className="question">{this.props.questions.question}</h2>
-        <button className="correct-answer-btn" onClick={this.correctGuess}>
-          {this.props.questions.correctAnswer}
-        </button>
-        <button className="false-answer-btn1" onClick={this.falseGuess}>
-          {this.props.questions.falseAnswer1}
-        </button>
-        <button className="false-answer-btn2" onClick={this.falseGuess}>
-          {this.props.questions.falseAnswer2}
-        </button>
+        <div>
+          <h2 className="question">{this.props.questions.question}</h2>
+          <button className="correct-answer-btn" onClick={this.correctGuess}>
+            {this.props.questions.correctAnswer}
+          </button>
+          <button className="false-answer-btn1" onClick={this.falseGuess}>
+            {this.props.questions.falseAnswer1}
+          </button>
+          <button className="false-answer-btn2" onClick={this.falseGuess}>
+            {this.props.questions.falseAnswer2}
+          </button>
+        </div>
+        <button className="rpt-game-btn" onClick={this.props.restartGame}>Back down the rabbit hole</button>
+        <button className="clear-localstorate-btn" onClick={this.props.clearLocalStorage}>Clear Local Storage</button>
       </div>
     );
   }
