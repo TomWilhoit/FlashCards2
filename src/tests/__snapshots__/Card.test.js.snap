@@ -4,8 +4,30 @@ exports[`Card should match snapshot when all data is passed correctly 1`] = `
 <div
   className="Card"
 >
-  <h1>
-    Card
-  </h1>
+  <div>
+    <h2
+      className="question"
+    >
+      What is 'context' in Javascript?
+    </h2>
+    <button
+      className="correct-answer-btn"
+      onClick={[Function]}
+    >
+      The value of the this keyword, in reference to the object that owns the currently executing code
+    </button>
+    <button
+      className="false-answer-btn1"
+      onClick={[Function]}
+    >
+      Context is the exact same as scope
+    </button>
+    <button
+      className="false-answer-btn2"
+      onClick={[Function]}
+    >
+      Function based reference to the function that 'owns' the currently executing code
+    </button>
+  </div>
 </div>
 `;
