@@ -1,10 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WrongList should match snapshot when all data is passed correctly 1`] = `
+exports[`WrongListCont should match snapshot when all data is passed correctly 1`] = `
 <ul>
-  <li>
-    3
-  </li>
   <li>
     What is the difference between \`const\` and \`let\`?
   </li>

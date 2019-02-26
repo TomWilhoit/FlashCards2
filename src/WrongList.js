@@ -6,10 +6,7 @@ class WrongList extends Component {
     super(props);
   }
 
-
-
   render() {
-    console.log(this.props)
     const element = this.props.element;
     return (
       <ul>

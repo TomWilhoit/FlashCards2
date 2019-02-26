@@ -1,3 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardContainer should match snapshot when all data is passed correctly 1`] = `undefined`;
+exports[`CardContainer should match snapshot when all data is passed correctly 1`] = `
+<div
+  className="Card"
+>
+  <div>
+    <h2
+      className="question"
+    >
+      What is 'context' in Javascript?
+    </h2>
+    <button
+      className="correct-answer-btn"
+      onClick={[Function]}
+    >
+      The value of the this keyword, in reference to the object that owns the currently executing code
+    </button>
+    <button
+      className="false-answer-btn1"
+      onClick={[Function]}
+    >
+      Context is the exact same as scope
+    </button>
+    <button
+      className="false-answer-btn2"
+      onClick={[Function]}
+    >
+      Function based reference to the function that 'owns' the currently executing code
+    </button>
+  </div>
+</div>
+`;

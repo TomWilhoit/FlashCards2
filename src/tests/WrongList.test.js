@@ -11,7 +11,7 @@ let element = {
   }
 
 
-describe('WrongList', () => {
+describe('WrongListCont', () => {
   
   let wrapper;
   beforeEach(() => {
