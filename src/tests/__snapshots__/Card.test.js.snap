@@ -11,12 +11,6 @@ exports[`Card should match snapshot when all data is passed correctly 1`] = `
       What is 'context' in Javascript?
     </h2>
     <button
-      className="correct-answer-btn"
-      onClick={[Function]}
-    >
-      The value of the this keyword, in reference to the object that owns the currently executing code
-    </button>
-    <button
       className="false-answer-btn1"
       onClick={[Function]}
     >
@@ -27,6 +21,12 @@ exports[`Card should match snapshot when all data is passed correctly 1`] = `
       onClick={[Function]}
     >
       Function based reference to the function that 'owns' the currently executing code
+    </button>
+    <button
+      className="correct-answer-btn"
+      onClick={[Function]}
+    >
+      The value of the this keyword, in reference to the object that owns the currently executing code
     </button>
   </div>
 </div>

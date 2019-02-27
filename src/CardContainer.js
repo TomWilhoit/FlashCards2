@@ -1,22 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "./Card";
 import "./css/CardContainer.css";
 
-class CardContainer extends Component {
-  render() {
-    return (
-      <div className="CardContainer">
-        <Card
-          questions={this.props.questions[this.props.questionIndex]}
-          questionIndex={this.props.questionIndex}
-          incrementQuestionIndex={this.props.incrementQuestionIndex}
-          saveToStorage={this.props.saveToStorage}
-          shouldRepeatQuestions={this.props.shouldRepeatQuestions}
-          restartGame={this.props.restartGame}
-        />
-      </div>
-    );
-  }
-}
+const CardContainer = props => {
+  return (
+    <div className="CardContainer">
+      <Card
+        questions={props.questions[props.questionIndex]}
+        questionIndex={props.questionIndex}
+        incrementQuestionIndex={props.incrementQuestionIndex}
+        saveToStorage={props.saveToStorage}
+        shouldRepeatQuestions={props.shouldRepeatQuestions}
+        restartGame={props.restartGame}
+      />
+    </div>
+  );
+};
 
 export default CardContainer;
