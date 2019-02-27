@@ -5,7 +5,7 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonOrder: 1
+      buttonOrder: 0
     };
   }
 
@@ -15,15 +15,15 @@ class Card extends Component {
     });
   };
 
-  falseGuess = () => {
+  correctGuess = () => {
     this.props.incrementQuestionIndex();
-    this.props.saveToStorage();
     this.props.shouldRepeatQuestions();
     this.buttonRandomize();
   };
 
-  correctGuess = () => {
+  falseGuess = () => {
     this.props.incrementQuestionIndex();
+    this.props.saveToStorage();
     this.props.shouldRepeatQuestions();
     this.buttonRandomize();
   };

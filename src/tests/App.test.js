@@ -3,49 +3,79 @@ import App from "../App";
 import { shallow } from "enzyme";
 global.localStorage = require("../setupTests");
 
-global.JSON = {
-  parse: function(obj) {
-    return obj;
-  },
-  stringify: function(obj) {
-    return obj;
-  }
-
-};
-
-let wrongArray = [{
-  "id": 1,
-  "question": "What is 'context' in Javascript?",
-  "correctAnswer": "The value of the this keyword, in reference to the object that owns the currently executing code",
-  "falseAnswer1": "Context is the exact same as scope",
-  "falseAnswer2": "Function based reference to the function that 'owns' the currently executing code"
-},
-{
-  "id": 2,
-  "question": "How do you access keys in an object?",
-  "correctAnswer": "Object.keys(objectName)",
-  "falseAnswer1": "Object.objectName(keys)",
-  "falseAnswer2": "Objection!"
-},
-{
-  "id": 3,
-  "question": "What is the difference between `const` and `let`?",
-  "correctAnswer": "With `const` the value cannot be reassigned",
-  "falseAnswer1": "With `let` the value cannot be reassigned",
-  "falseAnswer2": "Just `var` everything"
-}]
-
 describe("App", () => {
   let wrapper;
+  const mockFunc = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
-    
+    wrapper = shallow(<App restartGame={mockFunc} />);
+  });
+
+  // State and Snapshot tests
+
+  it("should have a proper default state", () => {
+    expect(wrapper.state()).toEqual({
+      questions: [],
+      gameRestart: false,
+      repeatQuestions: false,
+      questionIndex: 0,
+      savedArray: [],
+      wrongArray: []
+    });
   });
 
   it("should match the snapshot with all data passed in correctly", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-})
+  // restartGame method test
 
+  it("should change the state of repeatQuestions when restartGame is invoked", () => {
+    expect(wrapper.state("repeatQuestions")).toEqual(false);
+    wrapper.instance().restartGame();
+    expect(wrapper.state("repeatQuestions")).toEqual(true);
+  });
+
+  // shouldRepeatQuestions method test
+
+  it("should invoke restartGame when shouldRepeatQuestions is invoked with proper state", () => {
+    const instance = wrapper.instance();
+    jest.spyOn(instance, "restartGame");
+    wrapper.setState({ questionIndex: 56 });
+    wrapper.instance().shouldRepeatQuestions();
+    expect(instance.restartGame).toBeCalled();
+  });
+
+  // closeOutGame method tests
+
+  it("should invoke clearLocalStorage when closeOutGame is invoked", () => {
+    const instance = wrapper.instance();
+    jest.spyOn(instance, "clearLocalStorage");
+    wrapper.instance().closeOutGame();
+    expect(instance.clearLocalStorage).toBeCalled();
+  });
+
+  it("should change state properties when closeOutGame is invoked", () => {
+    wrapper.setState({
+      gameRestart: true,
+      repeatQuestions: true,
+      questionIndex: 1,
+      savedArray: [1, 2],
+      wrongArray: [1, 2]
+    });
+    wrapper.instance().closeOutGame();
+    expect(wrapper.state("gameRestart")).toEqual(false);
+    expect(wrapper.state("repeatQuestions")).toEqual(false);
+    expect(wrapper.state("questionIndex")).toEqual(0);
+    expect(wrapper.state("savedArray")).toEqual([]);
+    expect(wrapper.state("wrongArray")).toEqual([]);
+  });
+
+  // incrementQuestionIndex
+
+  it("should change the state of questionIndex when incrementQuestionIndex is invoked", () => {
+    expect(wrapper.state("questionIndex")).toEqual(0);
+    wrapper.instance().incrementQuestionIndex();
+    expect(wrapper.state("questionIndex")).toEqual(1);
+  });
+});
