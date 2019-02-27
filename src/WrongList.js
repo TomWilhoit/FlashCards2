@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/WrongList.css";
+import "./css/WrongList.scss";
 
 const WrongList = props => {
   const element = props.element;

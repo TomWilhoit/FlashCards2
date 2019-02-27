@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import CardContainer from "./CardContainer";
 import Wronglist from "./WrongList";
-import "./css/App.css";
+import "./css/App.scss";
 
 class App extends Component {
   constructor() {
@@ -97,8 +97,10 @@ class App extends Component {
         return (
           <div className="App">
             <Header />
-            <div>Question Number: {this.state.questionIndex + 1}/55</div>
-            <div>Number Guessed Wrong: {this.state.savedArray.length}</div>
+            <div className="question-counter">
+              <h3>Question Number: {this.state.questionIndex + 1}/55</h3>
+              <h3>Number Guessed Wrong: {this.state.savedArray.length}</h3>
+            </div>
             <CardContainer
               questions={this.state.questions}
               questionIndex={this.state.questionIndex}
@@ -116,20 +118,24 @@ class App extends Component {
       ) {
         return (
           <div className="wrong-questions">
-            <h1 className="review-header">Ok, here is some trouble spots</h1>
-            <div>{Math.ceil((this.state.savedArray.length / 55) * 100)}%</div>
+            <div className="percentage">
+              {Math.ceil((this.state.savedArray.length / 55) * 100)}%
+            </div>
+            <h1 className="review-header">Here are some trouble spots:</h1>
+            <div className="wrong-list-cont">
+              {wrongArray.map((element, index) => {
+                return (
+                  <Wronglist
+                    key={index}
+                    element={element}
+                    wrongArray={this.wrongArray}
+                  />
+                );
+              })}
+            </div>
             <button className="restart-game-btn" onClick={this.closeOutGame}>
-              PlayAgain?
+              Play Again!
             </button>
-            {wrongArray.map((element, index) => {
-              return (
-                <Wronglist
-                  key={index}
-                  element={element}
-                  wrongArray={this.wrongArray}
-                />
-              );
-            })}
           </div>
         );
       } else if (
@@ -138,16 +144,18 @@ class App extends Component {
       ) {
         return (
           <div className="congrats-page">
-            <div>You are a phenomenal human being with great hair.</div>
-            <div>100%</div>
+            <div className="win-percentage">100%</div>
+            <div className="win-message">
+              Take this win-screen and walk into Mod 6, killer.{" "}
+            </div>
             <button className="restart-game-btn" onClick={this.closeOutGame}>
-              PlayAgain?
+              Play Again!
             </button>
           </div>
         );
       }
     } else {
-      return <div>Loading MF</div>;
+      return <div className="loading-screen">Loading</div>;
     }
   }
 }

@@ -1,0 +1,51 @@
+$font-title: "Roboto Condensed", sans-serif;
+$font-copy: "Lato", sans-serif;
+$btn-font: "Abel", sans-serif;
+
+$btn-color: #0c3e9c;
+$font-color: #fff;
+
+.answer-btns {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.8em;
+  margin: auto;
+}
+
+.answer-btn {
+  width: 100%;
+  background: #0c3e9c;
+  color: #fff;
+  border-radius: 5px;
+  font-family: $font-copy;
+  font-size: 18px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 0px 1px 2px 2px black;
+  border: none;
+  font-weight: 100;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #000000;
+  }
+}
+
+.Card {
+  max-width: 650px;
+  margin: auto;
+  background: #3a3a3a;
+  padding: 1em 2em;
+  border-radius: 5px;
+  box-shadow: -1px 3px 15px 4px black;
+}
+
+.question {
+  font-family: $font-title;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 100;
+}

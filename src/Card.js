@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./css/Card.css";
+import "./css/Card.scss";
 
 class Card extends Component {
   constructor(props) {
@@ -34,15 +34,26 @@ class Card extends Component {
         <div className="Card">
           <div>
             <h2 className="question">{this.props.questions.question}</h2>
-            <button className="correct-answer-btn" onClick={this.correctGuess}>
-              {this.props.questions.correctAnswer}
-            </button>
-            <button className="false-answer-btn1" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer1}
-            </button>
-            <button className="false-answer-btn2" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer2}
-            </button>
+            <div className="answer-btns">
+              <button
+                className="answer-btn correct-answer-btn"
+                onClick={this.correctGuess}
+              >
+                {this.props.questions.correctAnswer}
+              </button>
+              <button
+                className="answer-btn false-answer-btn1"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer1}
+              </button>
+              <button
+                className="answer-btn false-answer-btn2"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer2}
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -51,15 +62,26 @@ class Card extends Component {
         <div className="Card">
           <div>
             <h2 className="question">{this.props.questions.question}</h2>
-            <button className="false-answer-btn1" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer1}
-            </button>
-            <button className="correct-answer-btn" onClick={this.correctGuess}>
-              {this.props.questions.correctAnswer}
-            </button>
-            <button className="false-answer-btn2" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer2}
-            </button>
+            <div className="answer-btns">
+              <button
+                className="answer-btn alse-answer-btn1"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer1}
+              </button>
+              <button
+                className="answer-btn correct-answer-btn"
+                onClick={this.correctGuess}
+              >
+                {this.props.questions.correctAnswer}
+              </button>
+              <button
+                className="answer-btn alse-answer-btn2"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer2}
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -68,15 +90,26 @@ class Card extends Component {
         <div className="Card">
           <div>
             <h2 className="question">{this.props.questions.question}</h2>
-            <button className="false-answer-btn1" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer1}
-            </button>
-            <button className="false-answer-btn2" onClick={this.falseGuess}>
-              {this.props.questions.falseAnswer2}
-            </button>
-            <button className="correct-answer-btn" onClick={this.correctGuess}>
-              {this.props.questions.correctAnswer}
-            </button>
+            <div className="answer-btns">
+              <button
+                className="answer-btn false-answer-btn1"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer1}
+              </button>
+              <button
+                className="answer-btn false-answer-btn2"
+                onClick={this.falseGuess}
+              >
+                {this.props.questions.falseAnswer2}
+              </button>
+              <button
+                className="answer-btn correct-answer-btn"
+                onClick={this.correctGuess}
+              >
+                {this.props.questions.correctAnswer}
+              </button>
+            </div>
           </div>
         </div>
       );
